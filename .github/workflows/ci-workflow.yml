@@ -49,6 +49,8 @@ jobs:
 
     - name: ACR Build and Push to Registry
       run: |
-        az acr build --image restapi:${{ github.sha }} \
-            --registry $ACR_REGISTRY_NAME \
-            --file Dockerfile .
+        az acr task run \
+        --name acrGenericBuildTask \
+        --registry $ACR_REGISTRY_NAME \
+        --context . \
+        --file Dockerfile
