@@ -38,14 +38,14 @@ jobs:
     #   env:
     #     GITHUB_TOKEN: ${{ github.token }}
 
-    ### Ideally should use pod identity here to talk with Azure services
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }} # https://github.com/Azure/login#configure-a-service-principal-with-a-secret
+    ## Ideally should use pod identity here to talk with Azure services
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }} # https://github.com/Azure/login#configure-a-service-principal-with-a-secret
 
-    # - name: ACR Build and Push to Registry
-    #   run: |
-    #     az acr build --image restapi:${{ github.sha }} \
-    #         --registry $ACR_REGISTRY_NAME \
-    #         --file Dockerfile .
+    - name: ACR Build and Push to Registry
+      run: |
+        az acr build --image restapi:${{ github.sha }} \
+            --registry $ACR_REGISTRY_NAME \
+            --file Dockerfile .
