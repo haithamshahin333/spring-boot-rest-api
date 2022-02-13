@@ -48,7 +48,7 @@
 	    <repository>
 	      <id>github</id>
 	      <name>GitHub Packages</name>
-	      <url>https://maven.pkg.github.com/haithamshahin333/spring-boot-restapi</url>
+	      <url>https://maven.pkg.github.com/haithamshahin333/spring-boot-rest-api</url>
 	    </repository>
 	  </distributionManagement>
 
