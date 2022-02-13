@@ -14,7 +14,11 @@ To get started with an enterprise deployment, review the following associated [E
 
     1. `ACR_REGISTRY_NAME`: This is the name of the ACR resource deployed (do not include `.azurecr.io`, only the resource name itself)
 
-    2. `AZURE_CREDENTIALS`: This is the service principal that the agent uses to authenticate to Azure. Contributor on ACR
+    2. `AKS_CLUSTER_NAME`: Name of target AKS Cluster
+
+    3. `RESOURCE_GROUP`: Resource Group containing AKS Cluster
+
+    4. `AZURE_CREDENTIALS`: This is the service principal that the agent uses to authenticate to Azure. Contributor on ACR
 
         > You will need to create the service principal with the following command and copy and paste the full json to the secret:
 

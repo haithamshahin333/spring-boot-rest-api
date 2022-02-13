@@ -54,3 +54,43 @@ jobs:
         --registry $ACR_REGISTRY_NAME \
         --context . \
         --file Dockerfile
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Set the target AKS cluster.
+    - uses: azure/aks-set-context@v2.0
+      with:
+        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
+
+    - uses: azure/k8s-bake@v2
+      with:
+        renderEngine: "helm"
+        helmChart: "./helm-chart/"
+        overrideFiles: "./helm-chart/values.yaml"
+        overrides: |
+          replicaCount:2
+        helm-version: "latest"
+      id: bake
+      
+    - name: Validate created manifest
+      uses: Azure/k8s-lint@v1
+      with:
+        manifests: ${{ steps.bake.outputs.manifestsBundle }}
+
+    - uses: Azure/k8s-deploy@v1.4
+      with:
+        action: deploy
+        namespace: spring-boot-app
+        manifests: ${{ steps.bake.outputs.manifestsBundle }}
+        images: |
+          $ACR_REGISTRY_NAME.azurecr.io/app:latest
