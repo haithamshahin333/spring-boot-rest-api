@@ -26,9 +26,10 @@ To get started with an enterprise deployment, review the following associated [E
         export SUBSCRIPTION_ID=$(az account show --query 'id')
         export RESOURCE_GROUP=app-innovation-landing-zone #update based on where deployment for ACR occurred
         export ACR_RESOURCE_ID=$(az acr list -g $RESOURCE_GROUP -o tsv --query '[0].id') #assumes only one ACR in the resource group
+        export AKS_RESOURCE_ID=$(az aks list -g $RESOURCE_GROUP -o tsv --query '[0].id')
         az ad sp create-for-rbac --name "githubActionServicePrincipal" \
                                 --role Contributor \
-                                --scopes $ACR_RESOURCE_ID \
+                                --scopes $ACR_RESOURCE_ID $AKS_RESOURCE_ID \
                                 --sdk-auth
                                 
         # The command should output a JSON object similar to this which you should copy and paste
