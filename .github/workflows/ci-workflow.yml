@@ -4,7 +4,7 @@
 name: Build and Test Artifact and Container Image
 
 on:
-  pull_request:
+  push:
     branches:
     - main
     - release/*
