@@ -82,8 +82,8 @@ jobs:
         overrideFiles: "./helm-chart/values.yaml"
         overrides: |
           replicaCount:2
-          image.repository: $ACR_REGISTRY_NAME.azurecr.io/app
-          image.tag: latest
+          image.repository:${{ACR_REGISTRY_NAME}}.azurecr.io/app
+          image.tag:latest
         helm-version: "latest"
       id: bake
       
