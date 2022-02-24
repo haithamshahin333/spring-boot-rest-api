@@ -26,4 +26,9 @@ public class GreetingController {
 	public Greeting greetingApimOperation(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
+	
+	@GetMapping("/newaseoperation")
+	public Greeting greetingAseOperation(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	}
 }
