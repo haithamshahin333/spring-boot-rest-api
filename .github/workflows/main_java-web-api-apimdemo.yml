@@ -47,7 +47,7 @@ jobs:
         id: deploy-to-webapp-dev
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'java-web-api-apimdemo-dev'
+          app-name: 'java-web-api-apimdemo'
           slot-name: 'dev'
           publish-profile: ${{ secrets.Publish_Profile_Dev }}
           package: '*.jar'
@@ -69,7 +69,7 @@ jobs:
         id: deploy-to-webapp-staging
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'java-web-api-apimdemo-staging'
+          app-name: 'java-web-api-apimdemo'
           slot-name: 'staging'
           publish-profile: ${{ secrets.Publish_Profile_Staging }}
           package: '*.jar'
