@@ -91,7 +91,7 @@ jobs:
         id: deploy-to-webapp-prod
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'java-web-api-apimdemo(staging)'
+          app-name: 'java-web-api-apimdemo'
           slot-name: 'Production'
           publish-profile: ${{ secrets.Publish_Profile_Production }}
           package: '*.jar'
